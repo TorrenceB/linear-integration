@@ -16,7 +16,7 @@ export default function Home() {
 		<div className="w-full h-full mt-10">
 			<main className="flex flex-col items-center">
 				{isLoading ? (
-					<p className="m-40 font-bold">Retrieving Active Cycles...</p>
+					<p className="m-40 font-bold">Retrieving Active Cycle...</p>
 				) : (
 					content
 				)}

@@ -72,7 +72,7 @@ const LinearCycle = ({ cycle }: Props) => {
 	}, [cycle]);
 
 	return (
-		<div className="flex flex-col items-center gap-2 w-2/3 p-4 bg-[#161618] rounded-md">
+		<div className="flex flex-col items-center gap-4 w-2/3 p-4 bg-[#161618] rounded-md">
 			<div className="flex flex-col mr-auto gap-1">
 				<h1 className="text-2xl font-bold">Cycle Burndown Chart</h1>
 				<p className="font-bold">{team?.name}</p>
@@ -80,12 +80,15 @@ const LinearCycle = ({ cycle }: Props) => {
 					<b>Cycle:</b> {cycle.startsAt.toDateString()} -{" "}
 					{cycle.endsAt.toDateString()}
 				</p>
+				<p>
+					<b>Goal:</b> {cycle.description}
+				</p>
 			</div>
 
 			<ResponsiveContainer width="100%" height={400}>
 				<LineChart data={burndown}>
 					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="date" />
+					<XAxis dataKey="date" stroke="#fff" />
 					<Tooltip />
 					<Legend />
 					<Line
