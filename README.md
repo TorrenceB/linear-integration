@@ -7,8 +7,11 @@ This project acheives three goals:
 1. Integrate Linear TypeScript Client into Torrence's Sandbox React App.
 2. Map existing Linear project issues to Cycle Burndown Chart.
 3. Become familiar with and apply at least 3 Linear Domain Models to codebase:
+
    a. Cycle
+   
    b. Issue
+   
    c. Team
 
 ## Getting Started
