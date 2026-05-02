@@ -7,12 +7,15 @@ const createBurndown = (
     endsAt: Date,
 ) => {
     const days: BurndownPoint[] = [];
+    // Sum of estimates for every issue.
     const totalWork = issues.reduce(
         (sum, currIssue) => sum + currIssue.estimate,
         0,
     );
 
     const msPerDay = 1000 * 60 * 60 * 24;
+
+    // Round up to nearest day
     const totalDays = Math.ceil(
         (endsAt.getTime() - startsAt.getTime()) / msPerDay,
     );
@@ -23,6 +26,7 @@ const createBurndown = (
         // Work remaining = total - anything completed or canceled by the end of today.
         const burnedByNow = issues
             .filter((issue) => {
+                // v2: Remove canceled issues from the picture. Mis-representation of the data.
                 const finishedAt = issue.completedAt ?? issue.canceledAt;
 
                 return finishedAt && new Date(finishedAt) <= date;
