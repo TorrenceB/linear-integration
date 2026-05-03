@@ -14,8 +14,11 @@ const createBurndown = (
     );
 
     const msPerDay = 1000 * 60 * 60 * 24;
+<<<<<<< HEAD
     const start = new Date(startsAt)
     const end = new Date(endsAt)
+=======
+>>>>>>> 5bb985f (update README)
 
     // Round up to nearest day
     const totalDays = Math.ceil(
@@ -28,9 +31,13 @@ const createBurndown = (
         // Work remaining = total - anything completed or canceled by the end of today.
         const burnedByNow = issues
             .filter((issue) => {
+<<<<<<< HEAD
                 /**
                  * @todo v2: Remove canceled issues from the picture.
                  * */
+=======
+                // v2: Remove canceled issues from the picture. Mis-representation of the data.
+>>>>>>> 5bb985f (update README)
                 const finishedAt = issue.completedAt ?? issue.canceledAt;
 
                 return finishedAt && new Date(finishedAt) <= date;
