@@ -15,7 +15,7 @@ The chart shows the sum of all issues assigned to the current cycle for a team. 
 
 ## Prerequisites
 
-1. If you haven't already, create a few issues in Linear and assign them to a cycle. To test the Burndown chart is working correctly, set one issue status to "completed".
+If you haven't already, create a few issues in Linear and assign them to a cycle. To test the Burndown chart is working correctly, set one issue status to "completed".
 
 ## Getting Started
 
