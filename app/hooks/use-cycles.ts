@@ -1,42 +1,54 @@
 import React, { useState, useEffect } from "react"
 
-import { Cycle } from "@linear/sdk"
-import linear from "#api/linear-client"
+import Cycle from "#types/cycle"
 
 const useCycles = () => {
     const [cycles, setCycles] = useState<Cycle[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
+        let canceled = false;
+
         const fetchCycles = async () => {
             try {
-                const teams = await linear.teams()
-                const [team] = teams.nodes;
+                const response = await fetch("/api/linear")
 
-                const cycles = await team.cycles({ filter: { isActive: { eq: true } } })
+                if (!response.ok) {
+                    const body = await response.json().catch(() => ({}))
 
-                if (cycles.nodes && cycles.nodes?.length) {
-                    setCycles(cycles.nodes)
-                } else {
-                    console.warn(`There are no cycles for ${team.displayName}`)
+                    throw new Error(body.error ?? `Request failed: ${response.status}`)
+                }
+
+                const data: { cycles: Cycle[] } = await response.json()
+
+                if (!canceled) {
+                    setCycles(data.cycles)
                 }
             } catch (error: unknown) {
-                if (error instanceof Error) {
-                    throw new Error(`@useCycles - An error occurred while retreiving assigned cycles ${error.message}`)
+                if (!canceled) {
+                    setError(error instanceof Error ? error.message : "Unknown error");
                 }
 
                 throw error;
             } finally {
-                setIsLoading(false)
+                if (!canceled) {
+                    setIsLoading(false);
+                }
             }
         }
 
         fetchCycles()
+
+        return () => {
+            canceled = true
+        }
     }, [])
 
     return {
         cycles,
-        isLoading
+        isLoading,
+        error
     }
 }
 

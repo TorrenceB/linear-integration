@@ -1,8 +1,8 @@
-import CycleIssue from "#types/cycle-issue";
+import Issue from "@/app/types/issue";
 import BurndownPoint from "#types/burndown-point";
 
 const createBurndown = (
-    issues: CycleIssue[],
+    issues: Issue[],
     startsAt: Date,
     endsAt: Date,
 ) => {
@@ -14,19 +14,23 @@ const createBurndown = (
     );
 
     const msPerDay = 1000 * 60 * 60 * 24;
+    const start = new Date(startsAt)
+    const end = new Date(endsAt)
 
     // Round up to nearest day
     const totalDays = Math.ceil(
-        (endsAt.getTime() - startsAt.getTime()) / msPerDay,
+        (end.getTime() - start.getTime()) / msPerDay,
     );
 
     for (let day = 0; day <= totalDays; day++) {
-        const date = new Date(startsAt.getTime() + day * msPerDay);
+        const date = new Date(start.getTime() + day * msPerDay);
 
         // Work remaining = total - anything completed or canceled by the end of today.
         const burnedByNow = issues
             .filter((issue) => {
-                // v2: Remove canceled issues from the picture. Mis-representation of the data.
+                /**
+                 * @todo v2: Remove canceled issues from the picture.
+                 * */
                 const finishedAt = issue.completedAt ?? issue.canceledAt;
 
                 return finishedAt && new Date(finishedAt) <= date;

@@ -4,7 +4,7 @@ import useCycles from "#hooks/use-cycles";
 import LinearCycle from "@/app/components/LinearCycle";
 
 export default function Home() {
-	const { cycles, isLoading } = useCycles();
+	const { cycles, isLoading, error } = useCycles();
 
 	const content = cycles?.length ? (
 		<LinearCycle cycle={cycles[0]} />

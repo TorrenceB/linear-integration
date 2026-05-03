@@ -1,4 +1,4 @@
-export default interface CycleIssue {
+export default interface Issue {
     id: string;
     title: string;
     completedAt?: Date | null | undefined;

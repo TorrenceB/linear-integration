@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Cycle, Team } from "@linear/sdk";
 import {
 	CartesianGrid,
 	Legend,
@@ -10,7 +9,7 @@ import {
 	Line,
 } from "recharts";
 
-import type CycleIssue from "#types/cycle-issue";
+import type Cycle from "#types/cycle";
 import type BurndownPoint from "#types/burndown-point";
 import createBurndown from "#util/create-burndown";
 
@@ -20,7 +19,6 @@ interface Props {
 
 const LinearCycle = ({ cycle }: Props) => {
 	const [burndown, setBurndown] = useState<BurndownPoint[]>([]);
-	const [team, setTeam] = useState<Team>();
 
 	if (!cycle) {
 		throw new Error(`cycle prop required`);
@@ -29,60 +27,37 @@ const LinearCycle = ({ cycle }: Props) => {
 	useEffect(() => {
 		const fetchIssues = async () => {
 			try {
-				const team = await cycle.team;
-				const issues = await cycle.issues();
+				const burndown = createBurndown(cycle.issues, cycle.startsAt, cycle.endsAt);
 
-				if (issues.nodes && issues.nodes?.length) {
-					const cycleIssues: CycleIssue[] = await Promise.all(
-						issues.nodes.map(async (issue) => {
-							const state = await issue.state;
-
-							const { id, title, estimate, completedAt, canceledAt } = issue;
-
-							return {
-								id,
-								title,
-								completedAt,
-								canceledAt,
-								estimate: estimate ?? 1,
-								stateType: state?.type ?? "unstarted",
-							};
-						}),
-					);
-
-					const burndown = createBurndown(cycleIssues, cycle.startsAt, cycle.endsAt);
-
-					setBurndown(burndown);
-					setTeam(team);
-				} else {
-					console.warn(`There are no active issues for cycle ${cycle.id}`);
-				}
+				setBurndown(burndown);
 			} catch (error: unknown) {
-				if (error instanceof Error) {
-					throw new Error(
-						`@useCycles - An error occurred while retreiving assigned cycles ${error.message}`,
-					);
-				}
+				const message = error instanceof Error ? error.message : "Unknown error";
 
-				throw error;
+				throw new Error(
+					`@useCycles - An error occurred while retreiving assigned cycles ${message}`,
+				);
 			}
 		};
 
 		fetchIssues();
 	}, [cycle]);
 
+	const start = new Date(cycle.startsAt);
+	const end = new Date(cycle.endsAt);
+
 	return (
 		<div className="flex flex-col items-center gap-4 w-2/3 p-4 bg-[#161618] rounded-md">
 			<div className="flex flex-col mr-auto gap-1">
 				<h1 className="text-2xl font-bold">Cycle Burndown Chart</h1>
-				<p className="font-bold">{team?.name}</p>
+				<p className="font-bold">{cycle.teamName}</p>
 				<p>
-					<b>Cycle:</b> {cycle.startsAt.toDateString()} -{" "}
-					{cycle.endsAt.toDateString()}
+					<b>Cycle:</b> {start.toDateString()} - {end.toDateString()}
 				</p>
-				<p>
-					<b>Goal:</b> {cycle.description}
-				</p>
+				{cycle?.description && (
+					<p>
+						<b>Goal:</b> {cycle.description}
+					</p>
+				)}
 			</div>
 
 			<ResponsiveContainer width="100%" height={400}>
