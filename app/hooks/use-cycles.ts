@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import Cycle from "#types/cycle"
 
 const useCycles = () => {
-    const [cycle, setCycle] = useState<Cycle | null>()
+    const [cycle, setCycle] = useState<Cycle | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
