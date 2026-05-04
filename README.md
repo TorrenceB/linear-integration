@@ -9,7 +9,7 @@ The chart shows the sum of all issues assigned to the current cycle for a team. 
 ## Design Choices
 
 1. For V1, assigned a value of 1 to each issue. For the next iteration, estimates will be assigned to issues for a more accurate snapshot.
-2. Assigned Linear API Key to environment variable and stored in a .`env.local` file.
+2. Assigned Linear API Key to environment variable and stored in a .`env.local` file. The API key remains server side by utilizing a Next.js route handler to serve the Linear TypeScript client.
 3. The chart only shows burndown for the current cycle. V2 will display a tabbed layout with the ability to view Burndown charts for all cycles.
 4. "Completed" and "Canceled" issues are lumped into one but in the future, Canceled will be excluded from the total work.
 
