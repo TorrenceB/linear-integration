@@ -1,8 +1,8 @@
 export default interface Issue {
     id: string;
     title: string;
-    completedAt?: Date | null | undefined;
-    canceledAt?: Date | null | undefined;
+    completedAt?: string | null;
+    canceledAt?: string | null;
     stateType: string;
     estimate: number;
 }

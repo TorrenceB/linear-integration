@@ -40,13 +40,13 @@ If you haven't already, create a few issues in Linear and assign them to a cycle
 
 ## Takeaways
 
-1. For developers building against it, that pace makes the SDK's TypeScript types essential — they catch schema changes at compile time instead of in production.
+1. Linear's API changelog updates daily, sometimes multiple times a day — fitting for a team whose first principle is to ship early. For developers building against it, that pace makes the SDK's TypeScript types essential — they catch schema changes at compile time instead of in production.
 
 2. Issue descriptions are optional in the data model, not just in the UI. That mirrors their 'Write Clearly and Directly' guidance in [Write Issues Not User Stories](https://linear.app/method/write-issues-not-user-stories) — that the title should carry the meaning and a description is something you add only if you need to. The product philosophy is encoded in the schema.
 
 3. The mental model of the API maps directly to what they're referred to in the Linear Interface. There's no guessing game as to what the data for a specific attribute is named. For example:
    - Cycles are called "Cycle" in the Schema, not "Sprint".
-   - Workflow types have a clearly defined set of values, e.g "triage", "backlog", "unstarted", etc. This makes it easy to write code against the definition rather than an arbitrary name you have to reference.
+   - Workflow state types have a clearly defined set of values, e.g "triage", "backlog", "unstarted", etc. This makes it easy to write code against the definition rather than an arbitrary name you have to reference.
 
 Linear's API isn't a thin wrapper around the database — it's a domain model that makes their methodology the path of least resistance.
 

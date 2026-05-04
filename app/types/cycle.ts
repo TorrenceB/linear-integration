@@ -4,8 +4,8 @@ export default interface Cycle {
     id: string;
     name: string;
     number: number;
-    startsAt: Date;
-    endsAt: Date;
+    startsAt: string;
+    endsAt: string;
     teamName: string;
     description: string | null;
     issues: Issue[]

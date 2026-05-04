@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 import Cycle from "#types/cycle"
 
 const useCycles = () => {
-    const [cycles, setCycles] = useState<Cycle[]>([])
+    const [cycle, setCycle] = useState<Cycle | null>()
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
@@ -22,15 +22,14 @@ const useCycles = () => {
 
                 const data: { cycles: Cycle[] } = await response.json()
 
-                if (!canceled) {
-                    setCycles(data.cycles)
+                if (!canceled && data.cycles?.length) {
+                    // Active cycles per team is always 0 or 1 in this setup.
+                    setCycle(data.cycles[0])
                 }
             } catch (error: unknown) {
                 if (!canceled) {
                     setError(error instanceof Error ? error.message : "Unknown error");
                 }
-
-                throw error;
             } finally {
                 if (!canceled) {
                     setIsLoading(false);
@@ -46,7 +45,7 @@ const useCycles = () => {
     }, [])
 
     return {
-        cycles,
+        cycle,
         isLoading,
         error
     }

@@ -1,15 +1,15 @@
 "use client";
 
 import useCycles from "#hooks/use-cycles";
-import LinearCycle from "@/app/components/LinearCycle";
+import LinearCycle from "#components/LinearCycle";
 
 export default function Home() {
-	const { cycles, isLoading, error } = useCycles();
+	const { cycle, isLoading, error } = useCycles();
 
-	const content = cycles?.length ? (
-		<LinearCycle cycle={cycles[0]} />
+	const content = cycle ? (
+		<LinearCycle cycle={cycle} />
 	) : (
-		<p>There are currently no active cycles</p>
+		<p>There is currently no active cycle.</p>
 	);
 
 	return (

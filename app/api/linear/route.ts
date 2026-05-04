@@ -1,4 +1,3 @@
-import Issue from "#types/issue";
 import { LinearClient } from "@linear/sdk";
 import { NextResponse } from "next/server";
 
@@ -13,7 +12,7 @@ export async function GET() {
     }
 
     const linear = new LinearClient({
-        apiKey: process.env.LINEAR_API_KEY
+        apiKey
     })
 
     try {
@@ -30,7 +29,7 @@ export async function GET() {
             cycles.nodes.map(async (cycle) => {
                 const issues = await cycle.issues();
 
-                const resolvedIssues: Issue[] = await Promise.all(
+                const resolvedIssues = await Promise.all(
                     issues.nodes.map(async (issue) => {
                         const state = await issue.state;
                         return {

@@ -3,11 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"imports": {
-		"#api": "./app/api/*.ts",
-		"#hooks": "./app/hooks/*.ts",
-		"#components": "./app/components/*.ts",
-		"#types": "./app/types/*.ts",
-		"#util": "./app/util/*.ts"
+		"#api": "./app/api/*",
+		"#hooks": "./app/hooks/*",
+		"#components": "./app/components/*",
+		"#types": "./app/types/*",
+		"#util": "./app/util/*"
 	},
 	"scripts": {
 		"dev": "next dev",
