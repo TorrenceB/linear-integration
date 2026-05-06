@@ -1,10 +1,10 @@
 "use client";
 
-import useCycles from "#hooks/use-cycles";
+import useCycle from "#hooks/use-cycle";
 import LinearCycle from "#components/LinearCycle";
 
 export default function Home() {
-	const { cycle, isLoading, error } = useCycles();
+	const { cycle, isLoading, error } = useCycle();
 
 	const content = cycle ? (
 		<LinearCycle cycle={cycle} />

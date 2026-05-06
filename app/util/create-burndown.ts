@@ -41,8 +41,8 @@ const createBurndown = (
         const ideal = totalWork * (1 - day / totalDays);
 
         days.push({
-            date: date.toISOString().slice(0, 10),
             remaining,
+            date: date.toISOString().slice(0, 10),
             ideal: Math.max(0, ideal),
         });
     }

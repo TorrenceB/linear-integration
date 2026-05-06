@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 
 import Cycle from "#types/cycle"
 
-const useCycles = () => {
+const useCycle = () => {
     const [cycle, setCycle] = useState<Cycle | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
         let canceled = false;
@@ -51,4 +51,4 @@ const useCycles = () => {
     }
 }
 
-export default useCycles;
+export default useCycle;
