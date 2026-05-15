@@ -37,17 +37,18 @@ export default function Home() {
 							<div className="flex flex-col gap-2 w-full p-4 bg-[#161618] rounded-md">
 								<h2 className="font-bold">How does a Burndown Chart work?</h2>
 								<p className="text-sm">
-									Agile software teams work in short bursts called <b>Sprints</b> (called{" "}
+									Agile software teams work in short bursts called <b>Sprints</b> (
 									<b>Cycles</b> in the context of Linear), often lasting one to two
 									weeks. A set of predetermined issues is assigned to the cycle, and each
 									issue is assigned an estimate that reflects its perceived difficulty.
 								</p>
 								<p className="text-sm">
 									A Burndown Chart tracks the teams progress over the cycle, showing two
-									lines: <b>Ideal</b> and <b>Actual</b>. Ideal is a downward linear
-									guideline that progresses from the sprint’s total estimated effort on
-									day one to 0 on the final day. Actual is the real remaining effort and
-									shifts up or down as project scope changes or issues are completed.
+									lines: <b>Ideal</b> and <b>Actual</b>. The Ideal line is a negative
+									slope that begins at the total estimated effort(e.g 20) on day one and
+									ends at 0 on the final day of the cycle. The Actual line is the real
+									remaining effort and shifts up or down as project scope changes or
+									issues are completed.
 								</p>
 								<p className="text-sm">
 									The x-axis charts the time, and the y-axis is the estimated units
