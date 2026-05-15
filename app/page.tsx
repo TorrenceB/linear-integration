@@ -16,16 +16,16 @@ export default function Home() {
 		<div className="w-full h-full my-10">
 			<main className="flex flex-col items-center gap-4 w-full">
 				<>
-					<div className="flex flex-col gap-4 w-2/3 p-4">
-						<div className="flex flex-col p-4 bg-[#161618] rounded-md">
+					<div className="flex flex-col items-center gap-4 w-full p-4 md:w-2/3 md:items-start">
+						<div className="flex flex-col p-4 bg-[#161618] rounded-md w-full">
 							<h1 className="text-3xl font-bold">Linear Cycle Burndown Project</h1>
 							<p className="text-sm">
 								Demonstration integrating Linear TypeScript SDK into a Next.js app. This
 								chart plots the current cycle burndown for any team with a Linear setup.
 							</p>
 						</div>
-						<div className="flex gap-4 h-fit">
-							<div className="flex flex-col gap-2 w-80 p-4 bg-[#161618] rounded-md">
+						<div className="flex flex-col gap-4 h-fit md:flex-row">
+							<div className="flex flex-col gap-2 w-full p-4 bg-[#161618] rounded-md">
 								<h2 className="font-bold">What is a Burndown Chart?</h2>
 								<p className="text-sm">
 									In simple terms, a burndown chart shows the amount of work remaining
@@ -34,7 +34,7 @@ export default function Home() {
 									it to visualize project progress and identify trends.
 								</p>
 							</div>
-							<div className="flex flex-col gap-2 w-80 p-4 bg-[#161618] rounded-md">
+							<div className="flex flex-col gap-2 w-full p-4 bg-[#161618] rounded-md">
 								<h2 className="font-bold">How does a Burndown Chart work?</h2>
 								<p className="text-sm">
 									Agile software teams work in short bursts called <b>Sprints</b> (called{" "}
@@ -54,7 +54,7 @@ export default function Home() {
 									(“Story Points”, Hours, etc.).
 								</p>
 							</div>
-							<div className="flex flex-col gap-2 w-80 p-4 bg-[#161618] rounded-md">
+							<div className="flex flex-col gap-2 w-full p-4 bg-[#161618] rounded-md">
 								<h2 className="font-bold">What does this chart demonstrate?</h2>
 								<p className="text-sm">
 									I created this project as part of a job application to{" "}

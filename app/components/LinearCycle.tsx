@@ -24,7 +24,7 @@ const LinearCycle = ({ cycle }: Props) => {
 	);
 
 	return (
-		<div className="flex flex-col items-center gap-4 w-2/3 p-4 bg-[#161618] rounded-md">
+		<div className="flex flex-col items-center gap-4 w-full p-4 bg-[#161618] rounded-md md:w-2/3">
 			<div className="flex flex-col mr-auto gap-1">
 				<h1 className="text-2xl font-bold">Cycle Burndown Chart</h1>
 				<p className="font-bold">{cycle.teamName}</p>
